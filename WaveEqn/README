@@ -1,0 +1,8 @@
+Author(s)    : Raza Pathan <rpathan2@illinois.edu>
+Maintainer(s): Raza Pathan <rpathan2@illinois.edu>
+Licence      : BSD
+--------------------------------------------------------------------------
+
+1. Purpose
+
+Basic implementation evolving the standard 3D wave equation.

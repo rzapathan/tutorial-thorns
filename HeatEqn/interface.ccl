@@ -1,0 +1,16 @@
+## Interface defs for thorn HeatEqn
+
+## Inherit defs from Grid thorn, esp x, y, z vars
+inherits: Grid
+
+## imp name required, ie this is name of thorn
+implements: HeatEqn
+
+public:
+
+CCTK_REAL evol_group TYPE=GF TIMELEVELS=2
+{
+	U
+} "Heat equation fields"
+
+

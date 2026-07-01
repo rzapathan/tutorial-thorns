@@ -1,0 +1,3 @@
+SRCS = init.c evolve.c boundary.c
+
+SUBDIRS =

@@ -1,0 +1,24 @@
+STORAGE: evol_group[2]
+
+SCHEDULE HeatEqn_Initialize AT CCTK_INITIAL
+{
+	LANG: C
+	Writes: U(Everywhere)
+	Reads: Grid::coordinates(Everywhere)
+
+} "Initialize evolved variables"
+
+SCHEDULE HeatEqn_Update AT CCTK_EVOL
+{
+	LANG: C
+	Writes: U(Interior)
+	Reads: U_p(Everywhere)
+} "Evolve the Heat Equation"
+
+SCHEDULE HeatEqn_Boundary AT CCTK_EVOL AFTER HeatEqn_Update
+{
+	LANG: C
+	Writes: U(Boundary)
+	SYNC: evol_group 
+} "Heat equation BC"
+ 

@@ -1,0 +1,8 @@
+Author(s)    : Eric J. West <ewest@d.umn.edu>
+Maintainer(s): Eric J. West <ewest@d.umn.edu>
+Licence      : BSD
+--------------------------------------------------------------------------
+
+1. Purpose
+
+Basic implementation evolving the standard 3D heat equation.
