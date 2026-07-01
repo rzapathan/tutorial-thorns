@@ -3,23 +3,22 @@
 #include <cctk_Parameters.h>
 
 // Update RHS functions
-
 void WaveEqn_RHS(CCTK_ARGUMENTS)
 {
-    DECLARE_CCTK_ARGUMENTS_WaveEqn_RHS; // decl all grid funs from interface.ccl
-    DECLARE_CCTK_PARAMETERS; // Declare all params from param.ccl
+  DECLARE_CCTK_ARGUMENTS_WaveEqn_RHS;  // Declare all grid functions from interface.ccl
+  DECLARE_CCTK_PARAMETERS; // Declare all parameters from param.ccl
 
-    const int gz = cctk_nghostzones[2];
-    const int gy = cctk_nghostzones[1];
-    const int gx = cctk_nghosezones[0];
+  const int gz = cctk_nghostzones[2];
+  const int gy = cctk_nghostzones[1];
+  const int gx = cctk_nghostzones[0];
 
-    const CCTK_REAL dt = CCTK_DELTA_TIME;
+  const CCTK_REAL dt = CCTK_DELTA_TIME;
 
-    const CCTK_REAL dx = CCTK_DELTA_SPACE(0);
-    const CCTK_REAL dy = CCTK_DELTA_SPACE(1);
-    const CCTK_REAL dy = CCTK_DELTA_SPACE(2);
+  const CCTK_REAL dx = CCTK_DELTA_SPACE(0);
+  const CCTK_REAL dy = CCTK_DELTA_SPACE(1);
+  const CCTK_REAL dz = CCTK_DELTA_SPACE(2);
 
-    for (int k = gz; k < cctk_lsh[2] - gz; k++) // loop over the z direction
+  for (int k = gz; k < cctk_lsh[2] - gz; k++) // loop over the z direction
   {
     for (int j = gy; j < cctk_lsh[1] - gy; j++) // loop over the y direction
     {
@@ -42,5 +41,4 @@ void WaveEqn_RHS(CCTK_ARGUMENTS)
       }
     }
   }
-    
 }
