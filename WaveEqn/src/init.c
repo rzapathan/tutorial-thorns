@@ -7,6 +7,7 @@
 void WaveEqn_Initialize(CCTK_ARGUMENTS)
 {
     DECLARE_CCTK_ARGUMENTS_WaveEqn_Initialize; // declare all grid fns from interface.ccl
+    DECLARE_CCTK_PARAMETERS; // declare all params from param.ccl
 
     for (int k = 0; k < cctk_lsh[2]; k++) // loop over the z dir
     {
@@ -16,7 +17,7 @@ void WaveEqn_Initialize(CCTK_ARGUMENTS)
             {
                 const size_t ijk = CCTK_GFINDEX3D(cctkGH, i, j, k);
                 U[ijk] = exp( -x[ijk] * x[ijk] - y[ijk] * y[ijk]);
-                k[ijk] = -0.0;
+                K[ijk] = -0.0;
             }
         }
     }
