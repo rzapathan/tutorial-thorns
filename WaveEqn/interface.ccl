@@ -1,0 +1,20 @@
+## interface defs for for thorn WaveEqn
+inherits: Grid
+
+implements: WaveEqn
+public:
+
+CCTK_REAL evol_group TYPE=GF TIMELEVELS=3 TAGS='tensortypealias="Scalar"'
+{
+    U, K
+} "Wave eqn fields"
+
+CCTK_REAL rhs_group TYPE=GF TIMELEVELS=1 TAGS='tensortypealias="Scalar"'
+{
+    U_rhs, K_rhs
+} "RHS functions for wave eqn fields"
+
+## MoL funs to register variables 
+
+CCTK_INT FUNCTION MoLRegisterEvolvedGroup(CCTK_INT IN EvolvedIndex, CCTK_INT IN RHSIndex)
+REQUIRES FUNCTION MoLRegisterEvolvedGroup
