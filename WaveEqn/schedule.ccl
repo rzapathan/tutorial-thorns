@@ -1,7 +1,7 @@
 STORAGE: evol_group[2]
 STORAGE: rhs_group
 
-SCHEDULE WaveEqn_MoLRegister IN mol_register
+SCHEDULE WaveEqn_MoLRegister IN MoL_Register
 {
     LANG: C
     OPTIONS: GLOBAL
