@@ -1,7 +1,7 @@
 ## Main make.code.defn file for thorn WaveEqn
 
 ## Source files in this dir
-SRCS = init.c evolve.c boundary.c mol_register.code
+SRCS = init.c evolve.c boundary.c mol_register.c
 
 ## Subdirs containing source files
 SUBDIRS = 
