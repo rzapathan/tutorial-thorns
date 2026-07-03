@@ -1,31 +1,41 @@
+## Schedule definitions for thorn WaveEqn
+
+## There won't be any storage allocated for a group
+## unless a corresponding storage declaration exists
+## for it in the schedule file. In square brackets,
+## we specify the number of storage levels to allocate.
 STORAGE: evol_group[2]
 STORAGE: rhs_group
 
+## Schedule a function defined in this thorn to run at various stages
+## of the simulation. The minimum you need to specify for a schedule
+## item is what language it's written in. Choices are: C (which includes
+## C++) and Fortran (which means Fortran90).
+
 SCHEDULE WaveEqn_MoLRegister IN MoL_Register
 {
-    LANG: C
-    OPTIONS: GLOBAL
+  LANG: C
+  OPTIONS: GLOBAL
 } "Register WaveEqn variables"
 
 SCHEDULE WaveEqn_Initialize AT CCTK_INITIAL
 {
-    LANG: C
-    WRITES: evol_group(Everywhere)
-    READS: Grid::coordinates(Everywhere)
+   LANG: C
+   WRITES: evol_group(Everywhere)
+   READS: Grid::coordinates(Everywhere)
 } "Initialize evolved variables"
 
 SCHEDULE WaveEqn_RHS IN MoL_CalcRHS
 {
-    LANG: C 
-    READS: evol_group(Everywhere)
-    WRITES: rhs_group(Interior)
+   LANG: C
+   READS: evol_group(Everywhere)
+   WRITES: rhs_group(Interior)
 } "Evolve the scalar wave equation"
 
 SCHEDULE WaveEqn_Boundary IN MoL_CalcRHS AFTER WaveEqn_RHS
 {
-    LANG: C 
-    WRITES: rhs_group(Boundary)
-    Reads: evol_group(Boundary)
-    SYNC: rhs_group
+   LANG: C
+   WRITES: rhs_group(Boundary)
+   READS: evol_group(Boundary)
+   SYNC: rhs_group
 } "Scalar wave equation BC"
-
