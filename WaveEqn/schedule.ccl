@@ -1,0 +1,31 @@
+STORAGE: evol_group[2]
+STORAGE: rhs_group
+
+SCHEDULE WaveEqn_MoLRegister IN mol_register
+{
+    LANG: C
+    OPTIONS: GLOBAL
+} "Register WaveEqn variables"
+
+SCHEDULE WaveEqn_Initialize AT CCTK_INITIAL
+{
+    LANG: C
+    WRITES: evol_group(Everywhere)
+    READS: Grid::coordinates(Everywhere)
+} "Initialize evolved variables"
+
+SCHEDULE WaveEqn_RHS IN MoL_CalcRHS
+{
+    LANG: C 
+    READS: evol_group(Everywhere)
+    WRITES: rhs_group(Interior)
+} "Evolve the scalar wave equation"
+
+SCHEDULE WaveEqn_Boundary IN MoL_CalcRHS AFTER WaveEqn_RHS
+{
+    LANG: C 
+    WRITES: rhs_group(Boundary)
+    Reads: evol_group(Boundary)
+    SYNC: rhs_group
+} "Scalar wave equation BC"
+
