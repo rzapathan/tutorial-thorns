@@ -1,6 +1,6 @@
 #include <cctk.h>
 #include <cctk_Arguments.h>
-#include <cctk_Paramaters.h>
+#include <cctk_Parameters.h>
 
 
 // Register variables w MoL
