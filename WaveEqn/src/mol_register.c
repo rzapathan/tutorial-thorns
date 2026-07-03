@@ -6,7 +6,7 @@
 // Register variables w MoL
 void WaveEqn_MolRegister(CCTK_ARGUMENTS)
 {
-    DECLARE_CCTK_ARGUMENTS_WaveEqn_MolRegister; //declaring grid fns from interface
+    DECLARE_CCTK_ARGUMENTS_WaveEqn_MoLRegister; //declaring grid fns from interface
     CCTK_INT ierr = 0, group, rhs;
 
     // Look up at the group index of the evol_group
