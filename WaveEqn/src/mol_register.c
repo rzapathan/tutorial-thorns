@@ -15,7 +15,7 @@ void WaveEqn_MolRegister(CCTK_ARGUMENTS)
     if (CCTK_IsFunctionAliased ("MoLRegisterEvolvedGroup"))
     {
         // *** key step *** tell MoL what vars we're evolving & what rhs vars are
-        ierr += MolRegisterEvolvedGroup(group,rhs);
+        ierr += MoLRegisterEvolvedGroup(group,rhs);
     }
     else 
     {
@@ -24,7 +24,7 @@ void WaveEqn_MolRegister(CCTK_ARGUMENTS)
     }
 
     if (ierr) {
-        CCTK_WARN(CCTK_WARN_ABORT, "Problems registering with MoL")
+        CCTK_WARN(CCTK_WARN_ABORT, "Problems registering with MoL");
     }
 
 }
