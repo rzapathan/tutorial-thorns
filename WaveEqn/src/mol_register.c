@@ -20,7 +20,7 @@ void WaveEqn_MolRegister(CCTK_ARGUMENTS)
     else 
     {
         CCTK_WARN (0, "MoL function not aliased !");
-        ierr++
+        ierr++;
     }
 
     if (ierr) {
