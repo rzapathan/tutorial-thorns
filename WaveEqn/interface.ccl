@@ -1,20 +1,40 @@
-## interface defs for for thorn WaveEqn
+## Interface definitions for thorn WaveEqn
 inherits: Grid
 
+## An implementation name is required for all thorns. No
+## two thorns in a configuration can implement the same
+## interface.
 implements: WaveEqn
+
+## The groups declared below can be public, private, or protected.
 public:
 
+## A group defines a set of variables that are allocated together
+## and share common properties, i.e. TYPE, TIMELEVELS, and TAGS 
+## such as the Prolongation=None tag. 
+## Note that the number of timelevels can be an integer parameter.
+## The TYPE tag can take on the values GF, SCALAR, or ARRAY.
+## GF stands for "Grid Function" and refers to a distributed array
+## data structure.
 CCTK_REAL evol_group TYPE=GF TIMELEVELS=3 TAGS='tensortypealias="Scalar"'
 {
-    U, K
-} "Wave eqn fields"
+  U, K
+} "Wave equation fields"
 
 CCTK_REAL rhs_group TYPE=GF TIMELEVELS=1 TAGS='tensortypealias="Scalar"'
 {
-    U_rhs, K_rhs
-} "RHS functions for wave eqn fields"
+  U_rhs, K_rhs
+} "RHS functions for wave equation fields"
 
-## MoL funs to register variables 
+## Scalars are single variables that are available on all processors.
+#CCTK_REAL scalar_group TYPE=SCALAR 
+#{
+#  scalar1, scalar2
+#}
+
+##----------------------------------------------------
+##   MoL functions to register variables
+##----------------------------------------------------
 
 CCTK_INT FUNCTION MoLRegisterEvolvedGroup(CCTK_INT IN EvolvedIndex, CCTK_INT IN RHSIndex)
 REQUIRES FUNCTION MoLRegisterEvolvedGroup
